@@ -1,0 +1,10 @@
+{
+	"id": "nodebb-plugin-wel-message-center",
+	"url": "https://github.com/AndreyKuryukin/nodebb-plugin-wel-message-center",
+	"library": "./index.js",
+	"hooks": [
+		{
+			"hook": "static:app.load", "method": "init"
+		}
+	]
+}
