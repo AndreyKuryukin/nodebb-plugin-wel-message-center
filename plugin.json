@@ -1,0 +1,22 @@
+{
+  "id": "nodebb-plugin-wel-message-center",
+  "url": "https://github.com/AndreyKuryukin/nodebb-plugin-wel-message-center",
+  "library": "./index.js",
+  "hooks": [
+	{
+	  "hook": "static:app.load",
+	  "method": "init"
+	},
+	{
+	  "hook": "action:notification.pushed",
+	  "method": "onNewNotification"
+	}
+  ],
+  "scripts": [
+	"static/lib/main.js"
+  ],
+  "acpScripts": [
+	"static/lib/admin.js"
+  ],
+  "templates": "static/templates"
+}

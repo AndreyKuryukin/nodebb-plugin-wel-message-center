@@ -1,0 +1,21 @@
+{
+  "name": "nodebb-plugin-wel-message-center",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "nbbpm": {
+	"compatibility": "^1.6.2 || ^1.7.0"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^3.1.0",
+    "cookie": "^0.4.0",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.15",
+    "socket.io": "^2.3.0"
+  }
+}
