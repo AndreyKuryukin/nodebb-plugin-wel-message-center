@@ -16,6 +16,9 @@ const Topics = require.main.require('./src/topics');
 const Categories = require.main.require('./src/categories');
 const Meta = require.main.require('./src/meta');
 
+var groups = require.main.require('./src/groups');
+var plugins = require.main.require('./src/plugins');
+
 const ALLOWED_TYPES = [
 	'new-reply',
 	'mention'
@@ -187,7 +190,32 @@ plugin.reloadSettings = function (callback) {
 	});
 };
 
+plugin.addAdminNavigation = function (header, callback) {
+	header.plugins.push({
+		route: '/plugins/messgae-center',
+		icon: 'fa-user-secret',
+		name: 'Message center',
+	});
+	console.log('message ceneter HEADER added');
+	callback(null, header);
+};
+
+function renderAdminPage(req, res, next) {
+	res.render('admin/plugins/message-center');
+};
+
+
 plugin.init = function (params, callback) {
+
+	const router = params.router;
+	const hostMiddleware = params.middleware;
+
+	router.get('/admin/plugins/messgae-center', hostMiddleware.admin.buildHeader, renderAdminPage);
+	router.get('/api/admin/plugins/messgae-center', renderAdminPage);
+
+	// router.get('/api/message-center/lookup', controllers.retrieveUser);
+	// router.post('/api/message-center/user', controllers.process);
+
 	plugin.reloadSettings(callback);
 };
 

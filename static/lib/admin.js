@@ -2,18 +2,17 @@
 
 /* globals define, $, app, socket, config */
 
-define('admin/plugins/session-sharing', ['settings'], function (Settings) {
+define('admin/plugins/message-center', ['settings'], function (Settings) {
 	var ACP = {};
-	debugger;
 
 	ACP.init = function () {
-		Settings.load('session-sharing', $('.session-sharing-settings'));
+		Settings.load('message-center', $('.message-center-settings'));
 
 		$('#save').on('click', function () {
-			Settings.save('session-sharing', $('.session-sharing-settings'), function () {
+			Settings.save('message-center', $('.message-center-settings'), function () {
 				app.alert({
 					type: 'success',
-					alert_id: 'session-sharing-saved',
+					alert_id: 'message-center-saved',
 					title: 'Settings Saved',
 					message: 'No restart/reload is required',
 					timeout: 5000,
@@ -46,7 +45,7 @@ define('admin/plugins/session-sharing', ['settings'], function (Settings) {
 				}
 
 				if (results.users.length) {
-					socket.emit('plugins.sessionSharing.showUserIds', {
+					socket.emit('plugins.messageCenter.showUserIds', {
 						uids: results.users.map(function (user) {
 							return user.uid;
 						}),
@@ -78,7 +77,7 @@ define('admin/plugins/session-sharing', ['settings'], function (Settings) {
 		ACP._searchDelay = setTimeout(function () {
 			delete ACP._searchDelay;
 
-			socket.emit('plugins.sessionSharing.findUserByRemoteId', {
+			socket.emit('plugins.messageCenter.findUserByRemoteId', {
 				remoteId: element.val(),
 			}, function (err, results) {
 				if (!err && results) {
